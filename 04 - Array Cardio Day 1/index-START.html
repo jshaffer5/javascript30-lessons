@@ -31,17 +31,31 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    const fifteen = inventors.filter(i => i.year > 1499 && i.year < 1600);
+    
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const first_last = inventors.map(i => {
+      const name = {first: i.first, last: i.last};
+      return name;
+    });
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sorted = inventors.sort((a, b) => a.year - b.year);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const sum = inventors.reduce((acc, i) => {
+      return acc + i.passed - i.year;
+    }, 0);
 
     // 5. Sort the inventors by years lived
+    let unsorted = inventors.slice();
+    unsorted.forEach((obj, i) => {
+      unsorted[i].lifespan = obj.passed - obj.year;
+      });
+    const lifespan_sorted = unsorted.sort((a,b) => a.lifespan - b.lifespan);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -54,6 +68,15 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    // Log output
+    console.table(fifteen);
+    console.table(first_last);
+    console.table(sorted);
+    console.table(sum);
+    console.table(lifespan_sorted);
+    // console.table(fifteen);
+    // console.table(fifteen);
+    // console.table(fifteen);
   </script>
 </body>
 </html>
