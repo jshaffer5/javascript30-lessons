@@ -59,17 +59,33 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // Note: must be run in console of wikipedia page
+        // let category = document.querySelector('.mw-category');
+        // let links = Array.from(category.querySelectorAll('a'));
 
-    let category = document.querySelector('.mw-category');
-    let links = Array.from(category.querySelectorAll('a'));
-
-    const de = links
-      .map(link => link.textContent)
-      .filter(streetName => streetName.includes('de'));
-    
+        // const de = links
+        //   .map(link => link.textContent)
+        //   .filter(streetName => streetName.includes('de'));
+        
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+
+    // Sort inventors array
+    let inventors_last = inventors.sort((a,b) => {
+      var textA = a.last;
+      var textB = b.last;
+      return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+    });
+
+    // Sort people array
+    let people_last = people.sort((p1, p2) => {
+      // Get last name from each name string
+      let [p1_last, p1_first] = p1.split(', ');
+      let [p2_last, p2_first] = p2.split(', ');
+      return (p1_last < p2_last) ? -1 : (p1_last > p2_last) ? 1 : 0;
+    });
+
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
@@ -83,10 +99,9 @@
     console.log('Task 4: ');
     console.table(sum);
     console.table(lifespan_sorted);
-    
-    console.table(de);
-    // console.table(fifteen);
-    // console.table(fifteen);
+    console.log('Task 7: ');
+    console.table(inventors_last);
+    console.table(people_last);
   </script>
 </body>
 </html>
